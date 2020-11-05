@@ -1,0 +1,22 @@
+{
+  "name": "envisage",
+  "version": "1.0.0",
+  "description": "project repo for Envisage hackathon 2020",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anunayj/envisage.git"
+  },
+  "keywords": [
+    "hackathon"
+  ],
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Anunayj/envisage/issues"
+  },
+  "homepage": "https://github.com/Anunayj/envisage#readme"
+}
