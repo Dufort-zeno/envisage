@@ -7,7 +7,6 @@ class About extends React.Component {
         <div>
             <h1>nobody cares about this page, I just added to check react router.</h1>
             <Link to="/">Imagine this is a fancy back button</Link>
-            <input type="text" ></input>
         </div>
         );
     }
