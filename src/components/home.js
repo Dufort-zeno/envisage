@@ -36,7 +36,7 @@ class Permissions extends React.Component{
   }
   locationHandler(){
     navigator.geolocation.getCurrentPosition((location)=>{
-      localStorage.setItem('location', location);
+      localStorage.setItem('location', JSON.strigify(location));
       this.props.update();
 
     })
@@ -110,7 +110,7 @@ class Subscribed extends React.Component{
       console.log(
         JSON.stringify({
           ...pushSubscription,
-          location:localStorage.getItem('location')
+          location:JSON.parse(localStorage.getItem('location'))
         })
       );
       localStorage.setItem('registered','success')
