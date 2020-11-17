@@ -69,4 +69,10 @@ self.addEventListener('message', (event) => {
   }
 });
 
-// Any other custom service worker logic can go here.
+self.addEventListener('push', (event) => {
+  if (event.data) {
+    console.log('Push event!! ', event.data.json())
+  } else {
+    console.log('Push event but no data')
+  }
+})
