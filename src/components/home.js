@@ -123,7 +123,7 @@ class Subscribed extends React.Component{
 }
   updatePermission(){
     Promise.all([navigator.permissions.query({name:'geolocation'}),
-    navigator.permissions.query({name:'push'}),navigator.permissions.query({name:'notifications'})])
+    navigator.permissions.query({name:'push',userVisibleOnly:true}),navigator.permissions.query({name:'notifications'})])
     .then(function(result) {
       const forceUpdate = function(){
         if(this._ismounted)
