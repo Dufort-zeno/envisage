@@ -43,12 +43,14 @@ class Permissions extends React.Component{
   }
 
   render(){
-    let getColor = (result)=>{
+    let getColor = (result,yellow=false)=>{
       console.log(result)
       if(result.state === "granted")
         return "green";
       else if(result.state === "denied")
         return "red";
+      else if(yellow)
+        return "yellow";
       else
         return null;
     }
@@ -57,7 +59,7 @@ class Permissions extends React.Component{
     return(
       <div className="permissions">
           <p>Heyooo, looks like we're missing a few permissions! </p>
-            <button id="location-btn" onClick={this.locationHandler.bind(this)} style={{backgroundColor: localStorage.getItem('location') ? "gold" : getColor(this.props.result[0])}}>Location</button>
+            <button id="location-btn" onClick={this.locationHandler.bind(this)} style={{backgroundColor: getColor(this.props.result[0],localStorage.getItem('location'))}}>Location</button>
             <button id="notification-btn" onClick={this.notificationHandler.bind(this)} style={{backgroundColor: getColor(this.props.result[1])}}>Notification</button>
         </div>
     )
@@ -105,7 +107,12 @@ class Subscribed extends React.Component{
       console.log("hello");
       let pushSubscription = await serviceWorkerRegistration.pushManager.subscribe(options);
       //TODO: REGISTER WITH SERVER
-      console.log(pushSubscription.endpoint,localStorage.getItem('location'));
+      console.log(
+        JSON.stringify({
+          ...pushSubscription,
+          location:localStorage.getItem('location')
+        })
+      );
       localStorage.setItem('registered','success')
       this.updatePermission();
   }else{
