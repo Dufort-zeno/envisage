@@ -84,7 +84,6 @@ class Subscribed extends React.Component{
     }
   } 
   async register(){
-    console.log("hello2");
     function urlB64ToUint8Array(base64String) {
       const padding = '='.repeat((4 - base64String.length % 4) % 4);
       const base64 = (base64String + padding)
@@ -107,13 +106,11 @@ class Subscribed extends React.Component{
         "BBg54OqIKc5uCgJFlcDQZQowmem6L1B_wlp7790yOUxHinFEIgV0hh68u_aFLjIKKzACXBbNla_iZP-CtxEA7_I"
       )
       };
-      console.log("hello");
       let pushSubscription = await serviceWorkerRegistration.pushManager.subscribe(options);
       //TODO: REGISTER WITH SERVER
-      window.push = pushSubscription;
       console.log(
         JSON.stringify({
-          ...pushSubscription,
+          ...pushSubscription.toJSON(), //Misleading, actually converts to JS object
           location:JSON.parse(localStorage.getItem('location'))
         })
       );
