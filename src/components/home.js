@@ -36,7 +36,7 @@ class Permissions extends React.Component{
   }
   locationHandler(){
     navigator.geolocation.getCurrentPosition((location)=>{
-      localStorage.setItem('location', JSON.strigify(location));
+      localStorage.setItem('location', JSON.stringify(location));
       this.props.update();
 
     })
