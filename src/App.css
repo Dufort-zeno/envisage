@@ -7,9 +7,10 @@
   pointer-events: none;
 }
 
+/* 
 div.done {
   display: none;
-}
+} */
 
 .sideflex {
   display: flex;
