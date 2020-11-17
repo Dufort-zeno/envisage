@@ -36,7 +36,10 @@ class Permissions extends React.Component{
   }
   locationHandler(){
     navigator.geolocation.getCurrentPosition((location)=>{
-      localStorage.setItem('location', JSON.stringify(location));
+      localStorage.setItem('location', JSON.stringify({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude
+      }));
       this.props.update();
 
     })
@@ -107,6 +110,7 @@ class Subscribed extends React.Component{
       console.log("hello");
       let pushSubscription = await serviceWorkerRegistration.pushManager.subscribe(options);
       //TODO: REGISTER WITH SERVER
+      window.push = pushSubscription;
       console.log(
         JSON.stringify({
           ...pushSubscription,
