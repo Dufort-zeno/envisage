@@ -20,12 +20,12 @@ async function main(args){
     app.use('/register', async (req, res, next) => {
         try{
             let userData = req.body;
-            if('endpoint' in userData)
+            if(!('endpoint' in userData))
                 throw new Error("Invalid request!");
             users.insertOne(userData);
             res.json({success:true});
         }catch(e){
-            res.status(403).json(e);
+            res.status(5000).json(e);
         }
     })
 
