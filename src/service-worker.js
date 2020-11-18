@@ -69,4 +69,13 @@ self.addEventListener('message', (event) => {
   }
 });
 
-// Any other custom service worker logic can go here.
+self.addEventListener('push', (event) => {
+  if (event.data) {
+    let notification = new Notification(event.data.title,event.data.options)
+    notification.onclick = function(event) {
+      event.preventDefault(); // prevent the browser from focusing the Notification's tab
+      window.open(event.data.url, '_blank');
+    }
+  
+  }
+})
