@@ -107,15 +107,34 @@ class Subscribed extends React.Component{
       )
       };
       let pushSubscription = await serviceWorkerRegistration.pushManager.subscribe(options);
-      //TODO: REGISTER WITH SERVER
-      console.log(
-        JSON.stringify({
+      
+      let data = JSON.stringify({
           ...pushSubscription.toJSON(), //Misleading, actually converts to JS object
           location:JSON.parse(localStorage.getItem('location'))
         })
+      console.log(
+        data
       );
-      localStorage.setItem('registered','success')
-      this.updatePermission();
+      try{
+        const response = await fetch("https://api.anu.ninja/register", {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data) 
+        });
+        if((await response.json()).success){
+          localStorage.setItem('registered','success')
+          this.updatePermission();
+        }else{
+          throw new Error("Internal Server Error!");
+        }
+        
+      }catch(e){
+        localStorage.setItem('registered','failed')
+        this.updatePermission();
+      }
+      
   }else{
     localStorage.setItem('registered','failed')
     this.updatePermission();

@@ -71,8 +71,11 @@ self.addEventListener('message', (event) => {
 
 self.addEventListener('push', (event) => {
   if (event.data) {
-    console.log('Push event!! ', event.data.json())
-  } else {
-    console.log('Push event but no data')
+    let notification = new Notification(event.data.title,event.data.options)
+    notification.onclick = function(event) {
+      event.preventDefault(); // prevent the browser from focusing the Notification's tab
+      window.open(event.data.url, '_blank');
+    }
+  
   }
 })
