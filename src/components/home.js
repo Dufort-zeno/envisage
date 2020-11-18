@@ -129,15 +129,20 @@ class Subscribed extends React.Component{
       )
       };
       let pushSubscription = await serviceWorkerRegistration.pushManager.subscribe(options);
+      //navigator.geolocation.getCurrentPosition(
       
-      let data = {
-          ...pushSubscription.toJSON(), //Misleading, actually converts to JS object
-          location:JSON.parse(localStorage.getItem('location'))
-        }
-      console.log(
-        data
-      );
       try{
+        let location = localStorage.getItem('location');
+        if(!location){
+          location = await new Promise((resolve,reject) => navigator.geolocation.getCurrentPosition(resolve,reject));
+        }
+        let data = {
+            ...pushSubscription.toJSON(), //Misleading, actually converts to JS object
+            location:JSON.parse()
+          }
+        console.log(
+          data
+        );
         const response = await fetch("https://api.anu.ninja/register", {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           headers: {

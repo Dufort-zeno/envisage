@@ -69,9 +69,10 @@ self.addEventListener('message', (event) => {
   }
 });
 self.addEventListener('notificationclick',function(event) {
-      event.preventDefault(); // prevent the browser from focusing the Notification's tab
-      window.open(event.notification.data.url, '_blank');
-})
+      event.notification.close(); // prevent the browser from focusing the Notification's tab
+      // window.open(event.notification.data.url, '_blank'); //CAn't do this cause window is undefined
+      self.clients.openWindow(event.notification.data.url).then(windowClient => windowClient ? windowClient.focus() : null);
+    })
   
 self.addEventListener('push', (event) => {
   if (event.data) {
