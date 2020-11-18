@@ -134,11 +134,15 @@ class Subscribed extends React.Component{
       try{
         let location = localStorage.getItem('location');
         if(!location){
-          location = await new Promise((resolve,reject) => navigator.geolocation.getCurrentPosition(resolve,reject));
+          const GeoLocation = await new Promise((resolve,reject) => navigator.geolocation.getCurrentPosition(resolve,reject));
+          location = JSON.stringify({
+            latitude: GeoLocation.coords.latitude,
+            longitude: GeoLocation.coords.longitude
+          });
         }
         let data = {
             ...pushSubscription.toJSON(), //Misleading, actually converts to JS object
-            location:JSON.parse()
+            location:JSON.parse(location)
           }
         console.log(
           data
