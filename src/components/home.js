@@ -1,6 +1,9 @@
 import React from 'react'; 
 import logo from '../logo.svg';
 import tick from './assets/tick.png'
+import cross from './assets/cross.png'
+import loading from './assets/loading.svg'
+
 // import {updatePermission} from './scripts.js';
 import '../App.css';
 import { Link } from 'react-router-dom';
@@ -15,16 +18,29 @@ function Done(){
     </div>
   )
 }
-
-function Failed(){
+function Fail(props){
   return(
-    <p>
-      FAILED!
-    </p>
-
-
+    <div className="done">
+             <img src={cross} alt="Done" className="done"/>
+             <p>
+               There was some error while regisetering you, Please try again later.
+             </p>
+             <button onClick={props.retry}>Retry!</button>
+    </div>
   )
 }
+
+function Loading(){
+  return(
+    <div className="done">
+             <img src={loading} alt="Done" className="done"/>
+             <p>
+               Processing your request!
+             </p>
+    </div>
+  )
+}
+
 
 class Permissions extends React.Component{
   constructor(props){
@@ -72,7 +88,7 @@ class Subscribed extends React.Component{
   constructor(props){
    super(props)
    this.state = {
-      data: null
+      data: <Loading/>
    }
   }
   
@@ -80,7 +96,7 @@ class Subscribed extends React.Component{
     if(this.state.data){
       return(this.state.data);
     }else{
-      return(null);
+      return(<Loading/>);
     }
   } 
   async register(){
@@ -155,10 +171,10 @@ class Subscribed extends React.Component{
           this.setState({data:<Done />});
         else if(localStorage.getItem('registered')==="failed"){
           //TODO: Handle Fail and retry
-          this.setState({data:<Failed/>});
+          this.setState({data:<Fail retry={this.register.bind(this)}/>});
         }
         else{
-          this.setState({data:null});
+          this.setState({data:<Loading/>});
           this.register()
         }
       }else{
