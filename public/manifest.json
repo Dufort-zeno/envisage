@@ -17,7 +17,20 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+
+    }, {
+      "src": "badge.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "monochrome"
+
+    }, {
+      "src": "badge128.png",
+      "type": "image/png",
+      "sizes": "128x128",
+      "purpose": "monochrome"
     }
+
   ],
   "start_url": ".",
   "display": "standalone",
