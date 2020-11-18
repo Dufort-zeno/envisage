@@ -11,8 +11,8 @@ async function main(args){
     const [client]= args;
    
     const users = client.db("ndws").collection("users");
-    app.use(bodyParser.json());
     app.use(cors());
+    app.use(bodyParser.json());
     app.use(function(err, req, res, next){
         res.status(500).json(err);
     });
