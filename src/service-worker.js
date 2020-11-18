@@ -68,15 +68,14 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
-
+self.addEventListener('notificationclick',function(event) {
+      event.preventDefault(); // prevent the browser from focusing the Notification's tab
+      window.open(event.notification.data.url, '_blank');
+})
+  
 self.addEventListener('push', (event) => {
   if (event.data) {
     let data = event.data.json();
     self.registration.showNotification(data.title,data.options);
-    self.addEventListener('notificationclick',function(event) {
-      event.preventDefault(); // prevent the browser from focusing the Notification's tab
-      window.open(event.notification.data.url, '_blank');
-    })
-  
   }
 })
