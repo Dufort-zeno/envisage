@@ -101,6 +101,7 @@ class Subscribed extends React.Component{
     }
   } 
   async register(){
+    this.setState({data:<Loading/>});
     if(this.registerActive){
       return;
     }
@@ -180,7 +181,6 @@ class Subscribed extends React.Component{
           this.setState({data:<Fail retry={this.register.bind(this)}/>});
         }
         else{
-          this.setState({data:<Loading/>});
           this.register()
         }
       }else{
