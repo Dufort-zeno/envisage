@@ -108,10 +108,10 @@ class Subscribed extends React.Component{
       };
       let pushSubscription = await serviceWorkerRegistration.pushManager.subscribe(options);
       
-      let data = JSON.stringify({
+      let data = {
           ...pushSubscription.toJSON(), //Misleading, actually converts to JS object
           location:JSON.parse(localStorage.getItem('location'))
-        })
+        }
       console.log(
         data
       );
@@ -121,7 +121,7 @@ class Subscribed extends React.Component{
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(data) 
+          body: JSON.stringify(data)
         });
         if((await response.json()).success){
           localStorage.setItem('registered','success')
