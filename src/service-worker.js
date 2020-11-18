@@ -72,11 +72,11 @@ self.addEventListener('message', (event) => {
 self.addEventListener('push', (event) => {
   if (event.data) {
     let data = event.data.json();
-    let notification = new Notification(data.title,data.options);
-    notification.onclick = function(event) {
+    self.registration.showNotification(data.title,data.options);
+    self.addEventListener('notificationclick',function(event) {
       event.preventDefault(); // prevent the browser from focusing the Notification's tab
-      window.open(data.url, '_blank');
-    }
+      window.open(event.notification.data.url, '_blank');
+    })
   
   }
 })
