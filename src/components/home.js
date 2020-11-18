@@ -1,12 +1,12 @@
 import React from 'react'; 
-import logo from '../logo.svg';
+import logo from '../badge.png';
 import tick from './assets/tick.png'
 import cross from './assets/cross.png'
 import loading from './assets/loading.svg'
 
 // import {updatePermission} from './scripts.js';
 import '../App.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 function Done(){
   return(
@@ -23,7 +23,7 @@ function Fail(props){
     <div className="done">
              <img src={cross} alt="Done" className="done"/>
              <p>
-               There was some error while regisetering you, Please try again later.
+               There was some error while registering you, please try again later.
              </p>
              <button onClick={props.retry}>Retry!</button>
     </div>
@@ -211,14 +211,10 @@ class App extends React.Component {
         <div className="App">
           <header className="App-header">
             <div className="sideflex">
-              <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                APPNAME
-              </p>
+              <img src={logo} className="App-logo" alt="logo" />    
             </div>
-            
           <div className="center">
-           <Subscribed key="0"/>
+           <Subscribed/>
           </div>
           </header>
           

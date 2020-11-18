@@ -1,6 +1,8 @@
 {
-  "short_name": "Envisage",
-  "name": "Envisage",
+  "short_name": "CatWarn",
+  "name": "CatWarn",
+  "description": "Pre-CATastrophe Warning System",
+  "lang": "en-US",
   "icons": [{
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
@@ -19,6 +21,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#2c384e",
+  "background_color": "#282c34"
 }
