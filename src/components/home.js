@@ -90,6 +90,7 @@ class Subscribed extends React.Component{
    this.state = {
       data: <Loading/>
    }
+   this.registerActive = false;
   }
   
   render(){
@@ -100,6 +101,10 @@ class Subscribed extends React.Component{
     }
   } 
   async register(){
+    if(this.registerActive){
+      return;
+    }
+    this.registerActive = true;
     function urlB64ToUint8Array(base64String) {
       const padding = '='.repeat((4 - base64String.length % 4) % 4);
       const base64 = (base64String + padding)
@@ -155,6 +160,7 @@ class Subscribed extends React.Component{
     localStorage.setItem('registered','failed')
     this.updatePermission();
   }
+   this.registerActive = false;
 }
   updatePermission(){
     Promise.all([navigator.permissions.query({name:'geolocation'}),
